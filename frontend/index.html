@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>e-RaktKosh Mesh | National Transfusion Telemetry Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --gov-blue: #0b3954;
+        --gov-blue-dark: #062030;
+        --gov-accent: #0056b3;
+        --crimson: #c81e3a;
+        --crimson-hover: #a1142b;
+        --surface: #ffffff;
+        --bg-subtle: #f4f6f9;
+        --border-color: #dbe2ea;
+        --text-main: #1c2d42;
+        --text-muted: #536479;
+        --base-font: 14px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+      }
+
+      html {
+        font-size: var(--base-font);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg-subtle);
+        color: var(--text-main);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* National Top Bar */
+      .gov-masthead {
+        background: #f8fafc;
+        border-bottom: 1px solid var(--border-color);
+        padding: 6px 36px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .gov-emblem-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        color: #0f172a;
+      }
+
+      .accessibility-tools {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .acc-btn {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        padding: 2px 7px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 11px;
+      }
+      .acc-btn:hover {
+        background: #e2e8f0;
+        transform: translateY(-1px);
+      }
+
+      /* Real-Time Telemetry Bar */
+      .status-strip {
+        background: var(--gov-blue-dark);
+        color: #94a3b8;
+        font-size: 12px;
+        padding: 8px 36px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--crimson);
+      }
+
+      .pulse-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #e2e8f0;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .ping-dot {
+        position: relative;
+        display: flex;
+        height: 9px;
+        width: 9px;
+      }
+      .ping-dot span:first-child {
+        animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        position: absolute;
+        display: inline-flex;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background-color: #22c55e;
+        opacity: 0.75;
+      }
+      .ping-dot span:last-child {
+        position: relative;
+        display: inline-flex;
+        border-radius: 50%;
+        height: 9px;
+        width: 9px;
+        background-color: #16a34a;
+      }
+      @keyframes ping {
+        75%, 100% {
+          transform: scale(2.4);
+          opacity: 0;
+        }
+      }
+
+      /* Navbar */
+      .navbar {
+        background: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 36px;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      }
+
+      .brand-title {
+        font-size: 19px;
+        font-weight: 800;
+        color: var(--gov-blue);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        letter-spacing: -0.4px;
+      }
+      .brand-title span {
+        color: var(--crimson);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .nav-link {
+        color: var(--text-main);
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+      }
+      .nav-link:hover {
+        background: #f1f5f9;
+        color: var(--crimson);
+      }
+
+      .btn-portal {
+        background: var(--gov-blue);
+        color: #ffffff !important;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 9px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 2px 4px rgba(11, 57, 84, 0.2);
+      }
+      .btn-portal:hover {
+        background: var(--gov-accent);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(11, 57, 84, 0.3);
+      }
+      .btn-portal:active {
+        transform: scale(0.97);
+      }
+
+      /* Hero Layout */
+      .hero-grid {
+        max-width: 1260px;
+        margin: 36px auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #e0f2fe;
+        color: #0369a1;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        letter-spacing: 0.4px;
+      }
+
+      .hero-headline {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        line-height: 1.18;
+        color: var(--gov-blue-dark);
+      }
+
+      .hero-sub {
+        font-size: 15px;
+        color: var(--text-muted);
+        margin: 16px 0 24px;
+        line-height: 1.65;
+        max-width: 580px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .btn-main {
+        background: var(--crimson);
+        color: #ffffff;
+        padding: 12px 22px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 4px 10px rgba(200, 30, 58, 0.25);
+      }
+      .btn-main:hover {
+        background: var(--crimson-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(200, 30, 58, 0.35);
+      }
+      .btn-main:active {
+        transform: scale(0.97);
+      }
+
+      .btn-sec {
+        background: #ffffff;
+        color: var(--gov-blue);
+        border: 1px solid var(--border-color);
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .btn-sec:hover {
+        background: #f8fafc;
+        border-color: var(--gov-blue);
+        transform: translateY(-1px);
+      }
+
+      /* Telemetry Monitor */
+      .monitor-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        box-shadow: 0 12px 24px -10px rgba(11, 57, 84, 0.08);
+        overflow: hidden;
+      }
+
+      .monitor-top {
+        background: #f8fafc;
+        padding: 12px 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .monitor-body {
+        padding: 16px 20px;
+      }
+
+      .pulse-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+        cursor: pointer;
+      }
+      .pulse-item:hover {
+        background: #f8fafc;
+        padding-left: 8px;
+        border-radius: 6px;
+      }
+      .pulse-item:last-child {
+        border-bottom: none;
+      }
+
+      /* Sections & Scaffolds */
+      .section-wrap {
+        max-width: 1260px;
+        margin: 48px auto;
+        padding: 0 24px;
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 28px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      }
+
+      .search-box {
+        padding: 10px 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        width: 320px;
+        font-size: 13px;
+        outline: none;
+      }
+      .search-box:focus {
+        border-color: var(--gov-accent);
+        box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+      }
+
+      .blood-chips {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 7px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        color: var(--text-main);
+      }
+      .chip:hover {
+        border-color: var(--gov-blue);
+        transform: translateY(-1px);
+      }
+      .chip.active {
+        background: var(--gov-blue);
+        border-color: var(--gov-blue);
+        color: #ffffff;
+        box-shadow: 0 2px 6px rgba(11, 57, 84, 0.25);
+      }
+
+      /* Interactive Table with Hover Depth */
+      .clinical-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 14px;
+        font-size: 13px;
+      }
+      .clinical-table th {
+        text-align: left;
+        padding: 12px;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        letter-spacing: 0.6px;
+        border-bottom: 2px solid #e2e8f0;
+      }
+      .clinical-table tbody tr {
+        cursor: pointer;
+      }
+      .clinical-table tbody tr:hover {
+        background-color: #f8fafc;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      }
+      .clinical-table td {
+        padding: 16px 12px;
+        border-bottom: 1px solid #edf2f7;
+      }
+
+      .badge-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .state-adequate {
+        background: #ecfdf5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+      }
+      .state-low {
+        background: #fffbeb;
+        color: #92400e;
+        border: 1px solid #fde68a;
+      }
+      .state-deficit {
+        background: #fff1f2;
+        color: #9f1239;
+        border: 1px solid #fecdd3;
+      }
+
+      /* Citizen Desk & Digital Card */
+      .desk-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 36px;
+      }
+
+      .desk-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 32px;
+      }
+
+      .desk-input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        margin: 6px 0 16px;
+        font-size: 13px;
+      }
+      .desk-input:focus {
+        border-color: var(--gov-accent);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+      }
+
+      /* Modal Pop-up */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(6, 32, 48, 0.6);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        padding: 16px;
+      }
+      .modal-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 520px;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      @keyframes modalIn {
+        from { transform: scale(0.95) translateY(10px); opacity: 0; }
+        to { transform: scale(1) translateY(0); opacity: 1; }
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid, .desk-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-headline {
+          font-size: 28px;
+        }
+        .navbar, .gov-masthead, .status-strip {
+          padding: 12px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

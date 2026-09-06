@@ -1,0 +1,28 @@
+/* e-Rakthghosh Mesh shared motion and premium healthcare styling */
+:root{--mesh-navy:#0b3954;--mesh-red:#c81e3a;--mesh-red-dark:#a9162e;--mesh-red-soft:#fff1f2;--mesh-line:#e2e8f0;--mesh-shadow:0 10px 30px rgba(11,57,84,.06);--mesh-shadow-hover:0 18px 42px rgba(11,57,84,.12)}
+html{scroll-behavior:smooth}
+body{-webkit-font-smoothing:antialiased}
+.hero-grid{position:relative;overflow:hidden;background:radial-gradient(circle at 92% 12%,rgba(200,30,58,.06),transparent 30%),linear-gradient(180deg,#fff 0%,#f8fafc 100%)}
+.hero-grid::before,.login-page::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(11,57,84,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(11,57,84,.025) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
+.monitor-card,.panel,.desk-card,.login-shell{box-shadow:var(--mesh-shadow);transition:box-shadow .3s ease,border-color .3s ease,transform .3s ease}
+.monitor-card:hover,.panel:hover,.desk-card:hover{box-shadow:var(--mesh-shadow-hover);border-color:#d9a4a4}
+.pulse-item{transition:background-color .25s ease,transform .25s ease}
+.pulse-item:hover{background:#fff8f8;transform:translateX(4px)}
+.clinical-table tbody tr{transition:background-color .25s ease}
+.clinical-table tbody tr:hover{background:#fff9f9}
+.chip{transition:all .25s ease}
+.chip:hover{transform:translateY(-2px);border-color:#e0a0a0;color:var(--mesh-red);background:var(--mesh-red-soft)}
+.btn-main{transition:all .25s ease}
+.btn-main:hover{background:var(--mesh-red-dark)!important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(200,30,58,.22)}
+.btn-sec:hover{transform:translateY(-2px);background:var(--mesh-red-soft);color:var(--mesh-red)}
+.desk-input{transition:border-color .25s ease,box-shadow .25s ease}
+.desk-input:focus{border-color:var(--mesh-red)!important;box-shadow:0 0 0 3px rgba(200,30,58,.1);outline:none}
+.reveal,.reveal-left,.reveal-right{opacity:0;transition:opacity .7s ease,transform .7s ease}
+.reveal{transform:translateY(24px)}.reveal-left{transform:translateX(-24px)}.reveal-right{transform:translateX(24px)}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;transform:translate(0,0)}
+.login-page{min-height:82vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;position:relative;overflow:hidden;background:radial-gradient(circle at 15% 20%,rgba(200,30,58,.06),transparent 30%),radial-gradient(circle at 85% 80%,rgba(11,57,84,.07),transparent 30%),linear-gradient(180deg,#fff 0%,#f8fafc 100%)}
+.login-shell{position:relative;z-index:1;width:100%;max-width:440px;padding:36px;background:#fff;border:1px solid #dbe2ea;border-radius:16px;animation:loginCardIn .7s ease both}
+.login-shell input:focus{border-color:var(--mesh-red)!important;box-shadow:0 0 0 3px rgba(200,30,58,.1);outline:none}
+@keyframes loginCardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.dashboard-ops-grid{grid-template-columns:1fr!important}.login-page{padding:24px 16px}.login-shell{padding:24px}.clinical-table{min-width:760px}.panel{overflow-x:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
