@@ -85,7 +85,7 @@ export default function HealthcareGallery() {
               Service Capabilities
             </span>
             <span style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.3px' }}>
-              e-RAKTKOSH MESH • INTEGRATED PLATFORM FACILITIES & CLINICAL WORKFLOWS
+              JEEVANSYNC • INTEGRATED PLATFORM FACILITIES & CLINICAL WORKFLOWS
             </span>
           </div>
 
