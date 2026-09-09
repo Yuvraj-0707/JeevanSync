@@ -1,7 +1,9 @@
-# 🩸 JeevanSync — Real-Time Inter-Hospital Blood Inventory Network & Emergency Telemetry
+# 🩸 JeevanSync – Real-Time Inter-Hospital Blood Inventory Network & Emergency Telemetry
 
-> **Smart India Hackathon 2026** • **PS ID:** SIH26196 • **Theme:** Healthcare & MedTech • **Category:** Software  
-> **Team:** Hack Elite • **Live Deployment:** [jeevansync.vercel.app](https://e-rakt-kosh.vercel.app)[cite: 1]
+Smart India Hackathon 2026 • **PS ID:** SIH2026198  
+**Theme:** MedTech / BioTech / HealthTech • **Category:** Software  
+**PS Title:** Student Innovation - Cutting-edge technology in these sectors continues to be in demand. Recent shifts in healthcare trends, growing populations also present an array of opportunities for innovation.  
+**Team:** Hack Elite • **Live Deployment:**(https://jeevansync.vercel.app)
 
 ---
 
